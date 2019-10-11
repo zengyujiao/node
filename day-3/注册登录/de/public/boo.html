@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./boots.css">
+    <link rel="stylesheet" href="./sig.css">
+</head>
+<body>
+    <div class="form-signin">
+        <!-- <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputUsername" class="sr-only">username</label>
+        <input type="email" id="inputUsername" class="form-control" placeholder="username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button id="btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+        let sig = ({
+            username,
+            password,
+        }) => {
+            $.ajax({
+                type: "POST",
+                url: " http://localhost:3000",
+                data:{
+                    username,
+                    password
+                },
+                // 如果成功就来到这里，并且把结果打印出来
+                success(response) {
+                    console.log(response);
+                    resolve(response);
+                },
+                // error(err){
+                //     reject(err);
+                // },
+            });
+        }
+        // 拿到按钮标签，并且添加点击事件
+        $("#btn").click(function(){
+            console.log(this);
+            // 拿到两个输入框的值
+            let username = $("#inputUsername").val();
+            let password = $("#inputPassword").val();
+            // 调用上面的方法
+            let data = sig({
+                username,
+                password
+            });
+            switch (data) {
+                // 为 0 登录失败，就提示你登录失败
+                case 0:
+                    break;
+                // 为 1 登录成功，就跳转到百度页面
+                case 1:
+                    location.href = "https://www.baidu.com"
+                default:
+                    break;
+            }
+        })
+    </script>
+</body>
+</html>
