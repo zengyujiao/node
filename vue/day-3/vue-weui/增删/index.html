@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./weui.css">
+</head>
+
+<body>
+    <!-- vue：标签必须放在一个根目录下面，不能放成兄弟节点的形式 -->
+    <!-- v-show和v-if的区别：(1)一个是显示和隐藏，一个是增加和删除 
+                            (2)如果频繁的切换用v-show，如果条件很少改变用v-if
+                            (3)v-show不管初始文件是什么，元素总是被渲染，并且只是简单地基于css切换
+                            (4)v-if 是真正的条件渲染，因为它会确保在切换过程中条件块内的事件监听和子组件适当地被销毁和重建
+    -->
+
+    <div id="app">
+        <div v-show="fool">显示和隐藏</div>
+        <div v-if="fool">增加和删除</div>
+        <button @click="toggle">按钮</button>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data: {
+                fool: false
+            },
+            methods: {
+                toggle() {
+                    this.fool = !this.fool
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
