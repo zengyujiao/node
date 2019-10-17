@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <eno-header></eno-header>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        // 调用静态方法必须在实例之前
+        // 第一个参数是组件的名字，建议xxx-xxx，不要用 div p header 等等
+        // 第二个参数是组件的选项
+        Vue.component("eno-header",{
+            // 静态方法没有挂载点，必须是函数，因为组件要独立作用域
+            data(){
+                return {
+                    title:"node"
+                }
+            },
+            // 视图层这里只能有一个根节点，必须在这个根节点里面
+            template:`
+                <header>
+                    <input v-model="title">
+                    <div v-text="title"></div>    
+                </header>
+            `
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                username:"hello",
+                listname:"A hello"
+            }
+        })
+    </script>
+</body>
+</html>

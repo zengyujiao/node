@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue必须在一个根节点里面，不能以兄弟关系出现 -->
+    <div id="app">
+        <!-- 组件是可以复用的，修改其中一个，另一个不会被修改 -->
+        <blog-child></blog-child>
+        <blog-child></blog-child>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 组件注册必须在 new Vue前面写
+        Vue.component("blog-child",{
+            // 这里的data必须是一个函数
+            data:function(){
+                return {
+                    title:"组件"
+                }
+            },
+            template:`
+                <header>
+                    <div v-text="title"></div>    
+                </header>
+            `
+        })
+        new Vue({
+            el: "#app",
+            data:{
+                username:"hsq",
+                classname:"xiongxiong"
+            }
+        })
+    </script>
+</body>
+
+</html>

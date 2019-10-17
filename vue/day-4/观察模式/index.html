@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 声明一个空的对象
+        let weux = {};
+        // 设置对象类型的缓存列表
+        weux.list = {
+            // 存储的回调函数，保存着回调函数的队列
+            setSearchText:[() => {}]
+        };
+        // 监听存储的回调函数
+        weux.on = function(key,fn){
+            if(!this.list[key]){
+                this.list[key] = [];
+            }
+        };
+        // 触发
+        weux.emit = function(key,param){
+            let fns = this.list[key];
+            if(!fns || fns.length === 0){
+                return false;
+            }
+            // 遍历
+            fns.forEach(fn => {
+                fn(param);
+            })
+        };
+        // 组件1 负责监听事件监听
+        weux.on("setSearchText",(parms) => {
+            console.log(parms)
+        })
+        // 组件2 负责触发
+        weux.emit("setSearchText","xxx");
+    </script>
+</body>
+</html>

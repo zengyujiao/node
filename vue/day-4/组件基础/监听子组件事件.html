@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 修改输入框的值，并点击，需要刷新才能看到效果 -->
+        <eno-child v-on:enlarge-text="fn"></eno-child>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        Vue.component("eno-child", {
+            data() {
+                return {
+                    num: 1
+                }
+            },
+            template: `
+                <header style="margin:">
+                    <input v-model="num">
+                    <button v-on:click="$emit('enlarge-text',num)">ok</button>  
+                </header>
+            `
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                num: 1
+            },
+            methods: {
+                fn(num) {
+                    this.num = num
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

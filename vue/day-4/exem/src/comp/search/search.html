@@ -1,0 +1,19 @@
+<div v-bind:class="['weui-search-bar',{'weui-search-bar_focusing':fool}]" id="searchBar">
+    <form class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input v-model="searchText" type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+            <a @click="remove" href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label @click="toggle" class="weui-search-bar__label" id="searchText"
+            style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);">
+            <i class="weui-icon-search"></i>
+            <span>搜索</span>
+        </label>
+    </form>
+    <a @click="clone" href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">{{title}}</a>
+</div>
+
+<!-- v-bind(简写 ：):布尔值，false，true -->
+<!-- v-model()：输入框，清空输入框 -->
+<!-- v-on(简写 @ ):clcik:点击 -->

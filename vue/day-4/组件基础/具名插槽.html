@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <eno-child>
+            <template v-slot:header>
+                <h1>Here might be a page title</h1>
+            </template>
+        </eno-child>
+        <eno-child>
+            <template v-slot:header1>
+                <eno-child1></eno-child1>
+            </template>
+        </eno-child>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        // 注册组件的顺序，先定义才能使用
+        Vue.component("eno-child1",{
+            template:`
+                <header>
+                    <div>子组件</div>    
+                </header>
+            `
+        })
+        Vue.component("eno-child", {
+            data() {
+                return {
+                    title: "bytes"
+                }
+            },
+            template: `
+                <header style="border:1px solid red; margin:10px">
+                    <div v-text="title"></div>    
+                    <slot name="header"></slot>
+                    <slot name="header1"></slot>
+                </header>
+            `
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                listname: "eno",
+                username: "yan"
+            }
+        })
+    </script>
+</body>
+
+</html>

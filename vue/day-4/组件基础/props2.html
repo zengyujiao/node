@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind指令改变属性 -->
+        <eno-header :name="fn" v-for="i in 3" :size="i" color="#789"></eno-header>
+        <eno-header :name="fn1" :size="1" color="#f86"></eno-header>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        Vue.component("eno-header1",{
+            template:`
+                <header style="margin:10px; border:1px solid red">
+                    <div>子组件</div>    
+                </header>
+            `
+        })
+        Vue.component("eno-header",{
+            // 传入的数据必须是函数,后面是类型
+            props:{
+                color:String,
+                size:Number,
+                name:Function
+            },
+            data(){
+                return {
+                    title:"组件"
+                }
+            },
+            template:`
+                <header :style="{
+                    margin:'10px',
+                    border:size+'px solid '+color
+                }">
+                    <div v-text="title"></div>   
+                    <input v-model="title"> 
+                    <p v-text="name(6,4)"></p>
+                    <slot></slot>
+                </header>
+            `
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                listname:"yan",
+                srcname:"eno"
+            },
+            methods:{
+                fn(a,b){
+                    return a + b
+                },
+                fn1(a,b){
+                    return a - b
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
