@@ -7,16 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <component :is="componentName"></component>
         <button @click="toggle('we-chat')">微信</button>
         <button @click="toggle('con-tact')">通讯录</button>
         <button @click="toggle('re-cover')">发现</button>
         <button @click="toggle('w-o')">我</button>
-    </div>
+    </div> -->
     
     <script src="./vue.js"></script>
-    <script>
+    <!-- <script>
         Vue.component("we-chat",{
             data(){
                 return{
@@ -67,12 +67,84 @@
         })
         new Vue({
             el:"#app",
+            // 数据层，默认选中"we-chat 微信"
             data:{
                 componentName:"we-chat"
             },
+            // 方法
             methods:{
                 toggle(componentName){
                     this.componentName = componentName
+                }
+            }
+        })
+    </script> -->
+
+    <div id="iop">
+        <component :is="comName"></component>
+        <button @click="tog('w-x')">微信</button>
+        <button @click="tog('t-xl')">通讯录</button>
+        <button @click="tog('re-over')">发现</button>
+        <button @click="tog('w-in')">我</button>
+    </div>
+
+    <script>
+        Vue.component("w-x",{
+            data(){
+                return {
+                    title:"微信"
+                }
+            },
+            template:`
+                <header style="margin:10px; border:1px solid red">
+                    <div v-text="title"></div>    
+                </header>
+            `
+        })
+        Vue.component("t-xl",{
+            data(){
+                return {
+                    title:"通讯录"
+                }
+            },
+            template:`
+                <header style="margin:10px; border:1px solid red">
+                    <div v-text="title"></div>    
+                </header>
+            `
+        })
+        Vue.component("re-over",{
+            data(){
+                return {
+                    title:"发现"
+                }
+            },
+            template:`
+                <header style="margin:10px; border:1px solid red">
+                    <div v-text="title"></div>    
+                </header>
+            `
+        })
+        Vue.component("w-in",{
+            data(){
+                return {
+                    title:"我"
+                }
+            },
+            template:`
+                <header style="margin:10px; border:1px solid red">
+                    <div v-text="title"></div>    
+                </header>
+            `
+        })
+        new Vue({
+            el:"#iop",
+            data:{
+                comName:"w-x"
+            },
+            methods:{
+                tog(){
+                    this.comName = comName
                 }
             }
         })

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 用定时器来监听本地存储变化
+        setTimeout(() => {
+            // 添加到储存库中
+            window.sessionStorage.setItem("name","eno")
+        },800)
+        window.addEventListener("storage",function(e){
+            console.log(e)
+            console.log(e.newValue);
+        })
+    </script>
+</body>
+</html>
