@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script src="../动画和过渡/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                name: "yan"
+            },
+            template: `
+                <div>{{name}}</div>
+            `,
+            // 监听该实例创建前的行为,创建前什么都没有
+            beforeCreate() {
+                console.log('-------beforeCreate-------')
+                console.log('V', this.$el)
+                console.log('M', this.$data)
+                // 你可以在这里放入创建之前你想触发的行为
+                // 触发一些方法
+            },
+            // 创建后，$el没有，$data有一个对象
+            created() {
+                console.log('-------created-------')
+                console.log('V', this.$el)
+                console.log('M', this.$data)
+                // 你可以在这里放入创建之前你想触发的行为
+                // 触发一些方法
+            },
+            // 挂载前，标签显示出来，内容没有显示出来
+            beforeMount() {
+                console.log('-------beforeMount-------')
+                console.log('V', this.$el)
+                console.log('M', this.$data)
+                // 你可以在这里放入创建之前你想触发的行为
+                // 触发一些方法
+            },
+            // 模板：这里是处理挂载前的数据，在转换成挂载后的数据，简单点来说就是处理模块
+            render(h) {
+                console.log('-------render-------')
+                let vdom2 = h('p', null, this.name)
+                vdom2.tag = 'div'
+                let vdom = h('div', null, [vdom2])
+                
+                console.log(vdom,vdom2)
+                return vdom
+            },
+            // 挂载后，显示内容
+            mounted() {
+                console.log('-------mounted-------')
+                console.log('V', this.$el)
+                console.log('M', this.$data)
+                // 你可以在这里放入创建之前你想触发的行为
+                // 触发一些方法
+            },
+        })
+    </script>
+</body>
+
+</html>
